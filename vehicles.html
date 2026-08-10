@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetFlow · Vehicles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="logo"><i class="fas fa-cube"></i><span>FleetFlow</span></div>
+    <nav>
+      <a href="index.html"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
+      <a href="vehicles.html" class="active"><i class="fas fa-truck"></i><span>Vehicles</span></a>
+      <a href="drivers.html"><i class="fas fa-user-cog"></i><span>Drivers</span></a>
+      <a href="trips.html"><i class="fas fa-route"></i><span>Trips</span></a>
+      <a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+      <a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+    </nav>
+    <div class="profile">
+      <div class="avatar">JD</div>
+      <div class="name">John Doe</div>
+      <div class="role"><span class="status-dot"></span> Fleet Manager</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+    <header class="top-header">
+      <div class="greeting"><h1>Fleet <span>Vehicles</span></h1><p>Manage your entire fleet inventory</p></div>
+      <div class="header-actions">
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="vehicleSearch" placeholder="Search vehicles..." /></div>
+        <button class="icon-btn"><i class="fas fa-filter"></i></button>
+        <button class="icon-btn"><i class="fas fa-plus"></i></button>
+      </div>
+    </header>
+
+    <!-- STATS -->
+    <section class="stats-grid">
+      <div class="stat-card"><div class="stat-icon"><i class="fas fa-car"></i></div><div class="stat-label">Total</div><div class="stat-value" id="vTotal">42</div></div>
+      <div class="stat-card"><div class="stat-icon green"><i class="fas fa-play"></i></div><div class="stat-label">Active</div><div class="stat-value" id="vActive">28</div></div>
+      <div class="stat-card"><div class="stat-icon orange"><i class="fas fa-pause"></i></div><div class="stat-label">Idle</div><div class="stat-value" id="vIdle">8</div></div>
+      <div class="stat-card"><div class="stat-icon"><i class="fas fa-stop"></i></div><div class="stat-label">Off</div><div class="stat-value" id="vOff">6</div></div>
+    </section>
+
+    <!-- CHARTS -->
+    <section class="charts-row">
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-pie" style="color:var(--accent-1);"></i> Vehicles by Type</h3></div><canvas id="typeChart"></canvas></div>
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-bar" style="color:var(--accent-3);"></i> Status Distribution</h3></div><canvas id="statusBarChart"></canvas></div>
+    </section>
+
+    <!-- TABLE -->
+    <section class="chart-card" style="padding:20px;">
+      <div class="card-header"><h3>All Vehicles</h3><span id="vehicleCount">6 vehicles</span></div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>ID</th><th>Model</th><th>Status</th><th>Driver</th><th>Fuel %</th><th>Location</th><th>Action</th></tr></thead>
+          <tbody id="vehicleTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/vehicles.js"></script>
+</body>
+</html>

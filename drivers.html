@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetFlow · Drivers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="logo"><i class="fas fa-cube"></i><span>FleetFlow</span></div>
+    <nav>
+      <a href="index.html"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
+      <a href="vehicles.html"><i class="fas fa-truck"></i><span>Vehicles</span></a>
+      <a href="drivers.html" class="active"><i class="fas fa-user-cog"></i><span>Drivers</span></a>
+      <a href="trips.html"><i class="fas fa-route"></i><span>Trips</span></a>
+      <a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+      <a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+    </nav>
+    <div class="profile">
+      <div class="avatar">JD</div>
+      <div class="name">John Doe</div>
+      <div class="role"><span class="status-dot"></span> Fleet Manager</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+    <header class="top-header">
+      <div class="greeting"><h1>Driver <span>Team</span></h1><p>View and manage all drivers</p></div>
+      <div class="header-actions">
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="driverSearch" placeholder="Search drivers..." /></div>
+        <button class="icon-btn"><i class="fas fa-user-plus"></i></button>
+      </div>
+    </header>
+
+    <!-- STATS -->
+    <section class="stats-grid">
+      <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-label">Total Drivers</div><div class="stat-value" id="dTotal">6</div></div>
+      <div class="stat-card"><div class="stat-icon green"><i class="fas fa-play"></i></div><div class="stat-label">Active</div><div class="stat-value" id="dActive">4</div></div>
+      <div class="stat-card"><div class="stat-icon cyan"><i class="fas fa-route"></i></div><div class="stat-label">On Trip</div><div class="stat-value" id="dOnTrip">3</div></div>
+      <div class="stat-card"><div class="stat-icon orange"><i class="fas fa-star"></i></div><div class="stat-label">Avg. Rating</div><div class="stat-value" id="dRating">4.5</div></div>
+    </section>
+
+    <!-- CHART -->
+    <section class="charts-row">
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-bar" style="color:var(--accent-2);"></i> Trips per Driver</h3></div><canvas id="driverTripChart"></canvas></div>
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-pie" style="color:var(--accent-1);"></i> Driver Status</h3></div><canvas id="driverStatusChart"></canvas></div>
+    </section>
+
+    <!-- DRIVER CARDS -->
+    <section><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><h3 style="font-size:16px;font-weight:600;"><i class="fas fa-id-card" style="margin-right:10px;color:var(--accent-3);"></i>Driver Profiles</h3></div><div class="vehicle-grid driver-grid" id="driverGrid"></div></section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/drivers.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+```text
+# VS Code
+.vscode/
+
+# OSX / Windows
+.DS_Store
+Thumbs.db
+
+# Node (optional, if you decide to add a package manager later)
+node_modules/

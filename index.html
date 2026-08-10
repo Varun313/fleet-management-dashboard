@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetFlow · Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo"><i class="fas fa-cube"></i><span>FleetFlow</span></div>
+    <nav>
+      <a href="index.html" class="active"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
+      <a href="vehicles.html"><i class="fas fa-truck"></i><span>Vehicles</span></a>
+      <a href="drivers.html"><i class="fas fa-user-cog"></i><span>Drivers</span></a>
+      <a href="trips.html"><i class="fas fa-route"></i><span>Trips</span></a>
+      <a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+      <a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+    </nav>
+    <div class="profile">
+      <div class="avatar">JD</div>
+      <div class="name">John Doe</div>
+      <div class="role"><span class="status-dot"></span> Fleet Manager</div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+    <!-- HEADER -->
+    <header class="top-header">
+      <div class="greeting"><h1>Welcome back, <span>John</span></h1><p>Here's your fleet overview for today</p></div>
+      <div class="header-actions">
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" placeholder="Search..." /></div>
+        <button class="icon-btn"><i class="fas fa-bell"></i><span class="badge">3</span></button>
+        <button class="icon-btn"><i class="fas fa-calendar-alt"></i></button>
+        <button class="icon-btn"><i class="fas fa-sliders-h"></i></button>
+      </div>
+    </header>
+
+    <!-- STATS (4 cards) -->
+    <section class="stats-grid">
+      <div class="stat-card"><div class="stat-icon"><i class="fas fa-truck"></i></div><div class="stat-label">Total Vehicles</div><div class="stat-value" id="totalVehicles">42</div><div class="stat-change"><i class="fas fa-arrow-up"></i> +4</div></div>
+      <div class="stat-card"><div class="stat-icon green"><i class="fas fa-user-check"></i></div><div class="stat-label">Active Drivers</div><div class="stat-value" id="activeDrivers">28</div><div class="stat-change"><i class="fas fa-arrow-up"></i> +2</div></div>
+      <div class="stat-card"><div class="stat-icon cyan"><i class="fas fa-dollar-sign"></i></div><div class="stat-label">Revenue (MTD)</div><div class="stat-value" id="revenue">$48.2k</div><div class="stat-change"><i class="fas fa-arrow-up"></i> +12%</div></div>
+      <div class="stat-card"><div class="stat-icon orange"><i class="fas fa-road"></i></div><div class="stat-label">Distance (MTD)</div><div class="stat-value" id="distance">12.4k <span style="font-size:16px;font-weight:400;color:var(--text-muted);">km</span></div><div class="stat-change"><i class="fas fa-arrow-up"></i> +8%</div></div>
+    </section>
+
+    <!-- CHARTS ROW 1 -->
+    <section class="charts-row">
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-circle" style="color:var(--accent-1);font-size:10px;"></i> Vehicle Status</h3><span>View all →</span></div><canvas id="statusChart"></canvas></div>
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-bar" style="color:var(--accent-3);font-size:12px;"></i> Weekly Trips</h3><span>View all →</span></div><canvas id="tripsChart"></canvas></div>
+    </section>
+
+    <!-- CHARTS ROW 2 (NEW) -->
+    <section class="charts-row-2">
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-line" style="color:#10b981;font-size:12px;"></i> Revenue Trend</h3><span>View all →</span></div><canvas id="revenueChart"></canvas></div>
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-tachometer-alt" style="color:#fb923c;font-size:12px;"></i> Fleet Utilization</h3><span>View all →</span></div><canvas id="utilizationChart"></canvas></div>
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-gas-pump" style="color:var(--accent-3);font-size:12px;"></i> Fuel Efficiency</h3><span>View all →</span></div><canvas id="fuelChart"></canvas></div>
+    </section>
+
+    <!-- MAP + ACTIVITY -->
+    <section class="map-activity-row">
+      <div class="map-card"><div class="card-header"><h3><i class="fas fa-map-marked-alt" style="color:var(--accent-4);"></i> Live Fleet Map</h3><div class="map-dot"><span class="dot"></span><span id="onlineCount">12</span> online</div></div><div id="fleetMap"></div></div>
+      <div class="activity-card"><div class="card-header"><h3><i class="fas fa-clock" style="color:var(--accent-2);"></i> Recent Activity</h3><span>View all →</span></div><div class="activity-list" id="activityList"></div></div>
+    </section>
+
+    <!-- VEHICLE PREVIEW -->
+    <section><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><h3 style="font-size:16px;font-weight:600;"><i class="fas fa-truck-fast" style="margin-right:10px;color:var(--accent-1);"></i>Fleet Vehicles</h3><a href="vehicles.html" style="font-size:13px;color:var(--text-muted);">View all →</a></div><div class="vehicle-grid" id="vehicleGrid"></div></section>
+
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

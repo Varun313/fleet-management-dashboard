@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetFlow · Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="logo"><i class="fas fa-cube"></i><span>FleetFlow</span></div>
+    <nav>
+      <a href="index.html"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
+      <a href="vehicles.html"><i class="fas fa-truck"></i><span>Vehicles</span></a>
+      <a href="drivers.html"><i class="fas fa-user-cog"></i><span>Drivers</span></a>
+      <a href="trips.html"><i class="fas fa-route"></i><span>Trips</span></a>
+      <a href="analytics.html" class="active"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+      <a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a>
+    </nav>
+    <div class="profile">
+      <div class="avatar">JD</div>
+      <div class="name">John Doe</div>
+      <div class="role"><span class="status-dot"></span> Fleet Manager</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+    <header class="top-header">
+      <div class="greeting"><h1>Analytics <span>Insights</span></h1><p>Deep dive into fleet performance</p></div>
+      <div class="header-actions">
+        <button class="icon-btn"><i class="fas fa-download"></i></button>
+        <button class="icon-btn"><i class="fas fa-calendar-alt"></i></button>
+      </div>
+    </header>
+
+    <!-- KPI -->
+    <section class="stats-grid">
+      <div class="stat-card"><div class="stat-icon"><i class="fas fa-dollar-sign"></i></div><div class="stat-label">Revenue (YTD)</div><div class="stat-value" id="aRevenue">$284k</div><div class="stat-change"><i class="fas fa-arrow-up"></i> +18%</div></div>
+      <div class="stat-card"><div class="stat-icon green"><i class="fas fa-wallet"></i></div><div class="stat-label">Cost (YTD)</div><div class="stat-value" id="aCost">$112k</div><div class="stat-change"><i class="fas fa-arrow-up"></i> +6%</div></div>
+      <div class="stat-card"><div class="stat-icon cyan"><i class="fas fa-chart-line"></i></div><div class="stat-label">Profit Margin</div><div class="stat-value" id="aMargin">60.5%</div><div class="stat-change"><i class="fas fa-arrow-up"></i> +4%</div></div>
+      <div class="stat-card"><div class="stat-icon orange"><i class="fas fa-tachometer-alt"></i></div><div class="stat-label">Utilization</div><div class="stat-value" id="aUtil">78%</div><div class="stat-change"><i class="fas fa-arrow-up"></i> +5%</div></div>
+    </section>
+
+    <!-- CHARTS -->
+    <section class="charts-row">
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-line" style="color:#10b981;"></i> Revenue vs Cost</h3></div><canvas id="revCostChart"></canvas></div>
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-pie" style="color:var(--accent-1);"></i> Trip Status</h3></div><canvas id="analyticsStatusChart"></canvas></div>
+    </section>
+    <section class="charts-row">
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-chart-bar" style="color:var(--accent-2);"></i> Top Drivers (Trips)</h3></div><canvas id="topDriversChart"></canvas></div>
+      <div class="chart-card"><div class="card-header"><h3><i class="fas fa-gas-pump" style="color:var(--accent-3);"></i> Fuel Efficiency (L/100km)</h3></div><canvas id="analyticsFuelChart"></canvas></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="module" src="js/analytics.js"></script>
+</body>
+</html>

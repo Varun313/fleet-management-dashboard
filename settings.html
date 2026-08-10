@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FleetFlow · Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="logo"><i class="fas fa-cube"></i><span>FleetFlow</span></div>
+    <nav>
+      <a href="index.html"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
+      <a href="vehicles.html"><i class="fas fa-truck"></i><span>Vehicles</span></a>
+      <a href="drivers.html"><i class="fas fa-user-cog"></i><span>Drivers</span></a>
+      <a href="trips.html"><i class="fas fa-route"></i><span>Trips</span></a>
+      <a href="analytics.html"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+      <a href="settings.html" class="active"><i class="fas fa-cog"></i><span>Settings</span></a>
+    </nav>
+    <div class="profile">
+      <div class="avatar">JD</div>
+      <div class="name">John Doe</div>
+      <div class="role"><span class="status-dot"></span> Fleet Manager</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+    <header class="top-header">
+      <div class="greeting"><h1>Settings</h1><p>Manage your account and preferences</p></div>
+    </header>
+
+    <div class="settings-grid">
+
+      <!-- Profile -->
+      <div class="settings-card">
+        <h3><i class="fas fa-user"></i> Profile</h3>
+        <div style="display:grid;gap:14px;">
+          <div>
+            <label style="display:block;font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Full Name</label>
+            <input type="text" value="John Doe" class="settings-input" />
+          </div>
+          <div>
+            <label style="display:block;font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Email</label>
+            <input type="email" value="john@fleetflow.com" class="settings-input" />
+          </div>
+          <div>
+            <label style="display:block;font-size:13px;color:var(--text-secondary);margin-bottom:4px;">Role</label>
+            <input type="text" value="Fleet Manager" class="settings-input" disabled />
+          </div>
+          <button class="btn-primary" style="margin-top:6px;width:fit-content;">
+            <i class="fas fa-save"></i> Update Profile
+          </button>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="settings-card">
+        <h3><i class="fas fa-bell" style="color:var(--accent-3);"></i> Notifications</h3>
+        <div class="toggle-group">
+          <div class="toggle-item"><span>📧 Email alerts</span><input type="checkbox" checked /></div>
+          <div class="toggle-item"><span>📱 SMS alerts</span><input type="checkbox" /></div>
+          <div class="toggle-item"><span>🔧 Maintenance reminders</span><input type="checkbox" checked /></div>
+          <div class="toggle-item"><span>🚚 Trip status updates</span><input type="checkbox" checked /></div>
+        </div>
+      </div>
+
+      <!-- Appearance -->
+      <div class="settings-card">
+        <h3><i class="fas fa-palette" style="color:var(--accent-2);"></i> Appearance</h3>
+        <div class="toggle-group">
+          <div class="toggle-item"><span>🌙 Dark Mode</span><input type="checkbox" /></div>
+          <div class="toggle-item"><span>📊 Show Animations</span><input type="checkbox" checked /></div>
+          <div class="toggle-item"><span>🔵 Compact Mode</span><input type="checkbox" checked /></div>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="settings-card danger">
+        <h3><i class="fas fa-triangle-exclamation"></i> Danger Zone</h3>
+        <p>Permanently delete your account and all associated data. This action cannot be undone.</p>
+        <button class="btn-danger"><i class="fas fa-trash"></i> Delete Account</button>
+      </div>
+
+    </div>
+
+    <!-- Global Save -->
+    <div style="margin-top:24px;display:flex;justify-content:flex-end;">
+      <button class="btn-primary"><i class="fas fa-save"></i> Save All Changes</button>
+    </div>
+
+  </main>
+
+  <script>
+    // Sidebar toggle for mobile
+    document.getElementById('hamburger')?.addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('open');
+    });
+    document.querySelectorAll('.sidebar nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('sidebar').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
